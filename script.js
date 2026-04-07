@@ -134,7 +134,7 @@ function updateImage() {
     if (food < 20) state = "голодний";
     else if (sleep < 20) state = "хочеСпати";
     else if (happy < 20) state = "хочеРозваг";
-    else if (food > 80 && sleep > 80 && happy > 80) state = "щасливий";
+    else if (food > 70 && sleep > 70 && happy > 70) state = "щасливий";
     
     // Формуємо шлях до картинки: images/ІМ'Я_емоція.png
     document.getElementById("photo").src = `images/${selectedHero}_${state}.png`;
