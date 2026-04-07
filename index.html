@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Tamagochi HERO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="selection-screen" class="modal">
+        <img src="images/logo.png" alt="Team Logo" class="logo-big">
+        <h2>Вітаємо! Обери свого героя:</h2>
+        <div class="heroes-grid">
+            <div class="hero-card" onclick="selectHero('Барбі')">
+                <img src="images/Барбі_звичайний.png" alt="Barbie">
+                <p>Барбі</p>
+            </div>
+            <div class="hero-card" onclick="selectHero('Бетмен')">
+                <img src="images/Бетмен_звичайний.png" alt="Batman">
+                <p>Бетмен</p>
+            </div>
+            <div class="hero-card" onclick="selectHero('Герміона')">
+                <img src="images/Герміона_звичайний.png" alt="Hermione">
+                <p>Герміона</p>
+            </div>
+            <div class="hero-card" onclick="selectHero('Дастін')">
+                <img src="images/Дастін_звичайний.png" alt="Dustin">
+                <p>Дастін</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="header-row">
+            <img src="images/logo.png" alt="Team Logo" class="logo-small">
+            <h1>TAMAGOCHI</h1>
+        </div>
+        
+        <div class="stats-row">
+            <p id="rez">💰 0</p> 
+            <p id="timer">❤️ 00:00</p>
+        </div>
+
+        <img onclick="clicker()" id="photo" class="locked" src="">
+
+        <div class="stat-container">
+            <span>🍔</span>
+            <div class="progress-bg"><div id="food-bar" class="progress-fill"></div></div>
+        </div>
+        <div class="stat-container">
+            <span>🛌</span>
+            <div class="progress-bg"><div id="sleep-bar" class="progress-fill"></div></div>
+        </div>
+        <div class="stat-container">
+            <span>🎮</span>
+            <div class="progress-bg"><div id="happy-bar" class="progress-fill"></div></div>
+        </div>
+
+        <table class="my_table">
+            <tr>
+                <td>            
+                    <img class="locked item-btn" id="apple" src="images/Легка_їжа.png" onclick="eat1()">
+                    <p class="price">💰 5 | +5%</p>
+                </td>
+                <td>
+                    <img class="locked item-btn" id="burger" src="images/Ситна_їжа.png" onclick="eat2()">
+                    <p class="price">💰 15 | +25%</p>
+                </td>
+                <td>
+                    <img class="locked item-btn" id="pillow" src="images/Легкий_сон.png" onclick="sleep1()">
+                    <p class="price">💰 5 | +5%</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img class="locked item-btn" id="bed" src="images/Норм_сон.png" onclick="sleep2()">
+                    <p class="price">💰 15 | +25%</p>
+                </td>
+                <td>
+                    <img class="locked item-btn" id="ball" src="images/Розваги1.png" onclick="play1()">
+                    <p class="price">💰 5 | +5%</p>
+                </td>
+                <td>
+                    <img class="locked item-btn" id="joystick" src="images/Розваги2.png" onclick="play2()">
+                    <p class="price">💰 15 | +25%</p>
+                </td>
+            </tr>
+        </table>
+        
+        <button id="start-btn" onclick="startGame()">ПОЧАТИ ГРУ</button>
+    </div>
+
+    <div id="game-over" class="modal hidden">
+        <h2 class="gold-text">ГРА ЗАКІНЧЕНА</h2>
+        <p id="final-score"></p>
+        <button class="gold-btn" onclick="location.reload()">Спробувати ще раз</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
