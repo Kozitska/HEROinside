@@ -1,7 +1,7 @@
-/* Основні кольори команди */
+/* 1. ПЕРЕМІННІ ТА БАЗОВІ НАЛАШТУВАННЯ */
 :root {
-    --purple-bg: #5c3a7d; /* Фіолетовий з лого */
-    --gold-accent: #ffd700; /* Золотий для заголовків/кнопок */
+    --purple-bg: #5c3a7d; /* Фіолетовий з вашого лого */
+    --gold-accent: #ffd700; /* Золотий для кнопок та акцентів */
     --gold-dark: #b89b00;
     --white-card: #ffffff;
     --text-dark: #333333;
@@ -10,7 +10,7 @@
 body {
     background-color: var(--purple-bg);
     background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 20px 20px; /* Легкий ефект зірок */
+    background-size: 20px 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
@@ -19,205 +19,218 @@ body {
     margin: 0;
     color: var(--white-card);
     
+    /* Для мобільних: прибираємо виділення тексту та затримку кліку */
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    overflow: hidden; 
 }
 
+/* 2. ГОЛОВНИЙ КОНТЕЙНЕР ГРИ */
 .main {
     background: var(--white-card);
-    width: 90%;          /* На мобільних займає 90% ширини екрана */
-    max-width: 400px;    /* Але не стає ширшою за 400px на комп'ютері */
-    padding: 20px;
-    border-radius: 30px;
+    width: 95%;          
+    max-width: 380px;    /* Компактна ширина для мобільних */
+    padding: 15px;       
+    border-radius: 25px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     text-align: center;
     position: relative;
-    box-sizing: border-box; /* Важливо, щоб padding не розширював блок */
+    box-sizing: border-box;
 }
 
-/* Адаптація картинок для маленьких екранів */
-@media (max-width: 380px) {
-    #photo {
-        width: 160px;    /* Трохи зменшуємо героя на дуже малих телефонах */
-        height: 160px;
-    }
-    .item-btn {
-        width: 60px;     /* Зменшуємо іконки їжі/сну */
-        height: 60px;
-    }
-    h1 {
-        font-size: 22px; /* Зменшуємо заголовок */
-    }
-    .heroes-grid {
-        gap: 10px;       /* Менші відступи у вікні вибору */
-    }
-}
-
-/* Логотипи */
+/* 3. ШАПКА ТА ЗАГОЛОВКИ */
 .header-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 5px;
 }
-.logo-small { width: 40px; height: 40px; }
-.logo-big { width: 120px; height: 120px; margin-bottom: 20px; }
+
+.logo-small { width: 30px; height: 30px; object-fit: contain; }
 
 h1 { 
-    color: var(--purple-bg); /* Головний заголовок фіолетовий */
+    color: var(--purple-bg);
     margin: 0;
-    font-size: 28px;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    font-size: 22px; 
 }
 
-.gold-text {
-    color: var(--gold-dark);
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Рядок з монетами та часом */
 .stats-row {
     display: flex;
     justify-content: space-around;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: var(--purple-bg);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background: #f8f0ff;
     padding: 5px;
-    border-radius: 15px;
+    border-radius: 12px;
 }
 
-/* Головне фото персонажа - ФІОЛЕТОВА РАМКА */
+/* 4. ПЕРСОНАЖ ТА ПОКАЗНИКИ */
 #photo { 
-    width: 200px; 
-    height: 200px;
+    width: 150px; 
+    height: 150px;
     object-fit: contain;
-    border: 6px solid var(--purple-bg); /* Змінено на фіолетовий */
-    border-radius: 25px;
-    padding: 10px;
-    margin: 10px 0;
+    border: 5px solid var(--purple-bg);
+    border-radius: 20px;
+    padding: 8px;
+    margin: 5px 0;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.3s;
     background: #fdfcff;
 }
+
 #photo:not(.locked):hover {
-    box-shadow: 0 0 20px rgba(92, 58, 125, 0.5);
+    box-shadow: 0 0 15px rgba(92, 58, 125, 0.4);
 }
+
 #photo:active { transform: scale(0.95); }
 
-/* Смужки потреб */
 .stat-container {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 8px 15px;
+    gap: 8px;
+    margin: 4px 10px;
 }
-.stat-container span { font-size: 20px; }
+
+.stat-container span { font-size: 16px; }
+
 .progress-bg {
     background: #eeeeee;
     width: 100%;
-    height: 14px;
+    height: 10px;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #ddd;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
+
 .progress-fill {
     height: 100%;
     width: 0%;
-    background: #4caf50; /* Початковий зелений */
+    background: #4caf50;
     transition: width 0.3s ease, background 0.5s ease;
 }
 
-/* Таблиця з предметами */
-.my_table { width: 100%; margin: 15px 0; border-spacing: 5px; }
+/* 5. ТАБЛИЦЯ МАГАЗИНУ */
+.my_table { 
+    width: 100%; 
+    margin: 5px 0; 
+    border-spacing: 2px; 
+}
+
 .my_table td { width: 33%; vertical-align: top; }
+
 .item-btn {
-    width: 70px; height: 70px;
+    width: 55px; 
+    height: 55px;
     object-fit: contain;
     cursor: pointer;
     transition: 0.2s;
-    display: block; margin: 0 auto;
-}
-.item-btn:active { transform: scale(0.9); }
-.price {
-    font-size: 12px; font-weight: bold;
-    color: var(--purple-bg);
-    margin: 5px 0;
-    background: #f8f0ff;
-    border-radius: 8px; padding: 3px;
+    display: block; 
+    margin: 0 auto;
 }
 
-/* Кнопки - ЗОЛОТИСТІ */
+.item-btn:active { transform: scale(0.9); }
+
+.price {
+    font-size: 10px; 
+    font-weight: bold;
+    color: var(--purple-bg);
+    margin: 2px 0;
+    background: #f8f0ff;
+    border-radius: 6px; 
+    padding: 2px;
+}
+
+/* 6. КНОПКИ */
 #start-btn, .gold-btn {
-    margin-top: 15px;
-    padding: 12px 30px;
-    font-size: 18px;
+    margin-top: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
     font-weight: bold;
     background: linear-gradient(145deg, var(--gold-accent), var(--gold-dark));
-    color: var(--purple-bg); /* Текст на золотому фіолетовий */
+    color: var(--purple-bg);
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(184, 155, 0, 0.4);
-    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(184, 155, 0, 0.3);
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
-#start-btn:hover, .gold-btn:hover {
-    box-shadow: 0 8px 20px rgba(184, 155, 0, 0.6);
-    transform: translateY(-2px);
-}
-#start-btn:active, .gold-btn:active { transform: translateY(1px); }
 
-/* Стани блокування */
 .locked { opacity: 0.15; filter: grayscale(1); pointer-events: none; }
 
-/* Модальні вікна - ФІОЛЕТОВИЙ НАПІВПРОЗОРИЙ ФОН */
+/* 7. МОДАЛЬНІ ВІКНА (ВИБІР ГЕРОЯ ТА GAME OVER) */
 .modal {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(40, 20, 60, 0.95); /* Темніший фіолетовий */
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(40, 20, 60, 0.98); /* Темний фіолетовий фон */
     z-index: 1000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: var(--white-card);
-}
-.hidden { display: none; }
-.modal h2 {
-    color: var(--gold-accent);
-    margin-bottom: 25px;
-    font-size: 24px;
-    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.heroes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.hidden { display: none; }
+
+/* Виправлення гігантського лого */
+.logo-big { 
+    width: 100%;
+    max-width: 180px; /* Обмежили розмір */
+    height: auto; 
+    margin-bottom: 15px; 
+}
+
+.modal h2 {
+    color: var(--gold-accent);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.heroes-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
+    width: 100%;
+    max-width: 300px; /* Компактна сітка героїв */
+}
+
 .hero-card {
     background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 15px;
     cursor: pointer;
-    border: 2px solid transparent;
-    transition: 0.3s;
     text-align: center;
+    border: 2px solid transparent;
 }
+
 .hero-card:hover {
     border-color: var(--gold-accent);
     background: rgba(255,255,255,0.2);
-    transform: translateY(-5px);
 }
-.hero-card img { width: 90px; height: 90px; object-fit: contain; margin-bottom: 10px; }
-.hero-card p { margin: 0; font-weight: bold; color: var(--gold-accent); }
 
-/* Ефект смерті */
+.hero-card img { width: 60px; height: 60px; object-fit: contain; }
+.hero-card p { margin: 5px 0 0; font-size: 14px; color: var(--gold-accent); }
+
+/* 8. ЕФЕКТ КІНЦЯ ГРИ */
 .die .main {
     filter: grayscale(1) blur(5px);
-    pointer-events: none;
     transition: 2s;
 }
-#game-over p { font-size: 18px; margin-bottom: 20px; }
+
+.gold-text { color: var(--gold-accent); font-size: 28px; }
+
+/* 9. ДЛЯ ДУЖЕ МАЛИХ ЕКРАНІВ */
+@media (max-height: 620px) {
+    #photo { width: 120px; height: 120px; }
+    .item-btn { width: 45px; height: 45px; }
+    h1 { font-size: 18px; }
+    .logo-big { max-width: 120px; }
+    .heroes-grid { gap: 10px; }
+}
